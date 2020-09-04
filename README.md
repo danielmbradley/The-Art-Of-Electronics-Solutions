@@ -1,1 +1,1 @@
-# The-Art-Of-Electronics-Solutions
+# Solutions To The Art Of Electronics
