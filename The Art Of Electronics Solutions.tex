@@ -1,0 +1,433 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{circuitikz}
+
+\begin{document}
+
+\title{Chapter 1 - Foundations Solutions}
+\author{Daniel Bradley\thanks{Questions from The Art Of Electronics by Paul Horowitz and Winfield Hill}}
+
+\date{\today}
+
+\maketitle
+\newpage
+
+\section{Exercise 1.1.}
+
+\paragraph{Question\newline}
+
+You have a 5k resistor and a 10k resistor. What is their combined resistance: (a) in series and (b) in parallel?
+
+\paragraph{Solution\newline}
+
+a. A circuit in series looks like the following circuit diagram:
+
+\begin{figure}[h]\centering
+\begin{circuitikz}
+      \draw (0,0)
+      to[battery2 = $V$] (0,4) % The DC power source
+      to[short] (2,4)
+      to[R=$R_1$] (2,2) % The resistor
+      to[short] (2,2)
+      to[R=$R_2$] (2,0) % The resistor
+      to[short] (2,0)
+      to[short] (0,0);
+\end{circuitikz}
+\caption{A diagram of two resistors, $R_1$ and $R_2$ in series}
+\end{figure}
+
+To calculate the total resistance, we use:\newline
+
+$R_{combined}$ = $R_1$ + $R_2$\newline
+
+As: 5k = $5000\Omega$, 10k = $10,000\Omega$\newline
+
+$R_{combined}$ = $5k\Omega$ + $10k\Omega$ = {$15k\Omega$}\newline
+
+Final Solution = {$15k\Omega$}
+
+
+\paragraph{\newline}
+
+b. A circuit in parallel looks like the following circuit diagram:
+
+\begin{figure}[h]\centering
+\begin{circuitikz}
+      \draw (0,0)
+      to[battery2 = $V$] (0,4) % The DC power source
+      to[short] (1.5,4)
+      to[R=$R_1$] (1.5,0)
+      to[short] (1.5,0)
+      to[short] (0,0);
+      \draw (1.5,4)
+      to[short] (3,4)
+      to[R=$R_2$] (3,0)
+      to[short] (3,0)
+      to[short] (1.5,0);
+\end{circuitikz}
+\caption{A diagram of two resistors, $R_1$ and $R_2$ in parallel}
+\end{figure}
+
+To calculate the total resistance, we use:\newline
+
+$\frac{1}{R_{combined}}$ = $\frac{1}{R_1}$+ $\frac{1}{R_2}$\newline
+
+$R_{combined}$ = $(\frac{1}{5k\Omega} + \frac{1}{10k\Omega})^{-1}$\newline
+
+$R_{combined}$ = $\frac{3}{10k\Omega}^{-1}$\newline
+
+Final Solution = {$3.333k\Omega$}\newline
+
+\clearpage
+
+\section{Exercise 1.2.}
+
+\paragraph{Question\newline}
+
+If you place a 1 ohm resistor across a 12 volt car battery, how much power will it dissipate?
+
+\paragraph{Solution\newline}
+
+To calculate the total power dissipation:\newline
+
+P = IV = (V$\frac{V}{I}$) = $\frac{V^2}{I}$\newline
+
+$P_{dissipated}$ = $\frac{12^2}{1}$ = 144 W\newline
+
+Final Solution = 144 W\newline
+
+\clearpage
+
+\section{Exercise 1.3.}
+
+\paragraph{Question\newline}
+
+Prove the formulas for the series and parallel resistors.
+
+\paragraph{Solution\newline}
+
+Series Resistor Formula
+
+Using Kirchhoff's Voltage Law (KVL):\newline
+
+$V_1$ + $V_2$ + $V_3$ = $V_T$\newline
+
+I$R_1$ + I$R_2$ + I$R_3$ = I$R_T$\newline
+
+I($R_1$ + $R_2$ + $R_3$) = I$R_T$\newline
+
+Divide the equation through by "I"\newline
+
+$R_1$ + $R_2$ + $R_3$ = $R_T$\newline
+
+\paragraph{\newline}
+
+Parallel Resistor Formula
+
+Using Kirchhoff's Current Law (KCL):\newline
+
+$I_1$ + $I_2$ + $I_3$ =$I_T$\newline
+
+$\frac{V}{R_1}$ + $\frac{V}{R_2}$ + $\frac{V}{R_3}$ = $\frac{V}{R_T}$\newline
+
+V($\frac{1}{R_1}$ + $\frac{1}{R_2}$ + $\frac{1}{R_3}$) = V($\frac{1}{R_T}$)\newline
+
+$\frac{1}{R_1}$ + $\frac{1}{R_2}$ + $\frac{1}{R_3}$ = $\frac{1}{R_T}$\newline
+
+\clearpage
+
+\section{Exercise 1.4.}
+
+\paragraph{Question\newline}
+
+Show that several resistors in parallel have resistance:\newline
+
+R = $\frac{1}{\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} + ...}$\newline
+
+\paragraph{Solution\newline}
+
+Given $\frac{1}{\frac{1}{R_1} + \frac{1}{R_2}}$ = $R_{1+2}$\newline
+
+We can therefore say -\newline
+
+
+$\frac{1}{\frac{1}{R_{1+2}} + \frac{1}{R_3}}$ = $R_{1+2+3}$\newline
+
+It can then be proved via induction that $R_{1...n}$ of n resistances $R_1$, $R_2$,...,$R_n$ in parallel is:\newline
+
+$R_{1...n}$ = $\frac{1}{\sum^{n}_{i=1} \frac{1}{R_i}}$\newline
+
+Now it's trivial to say that when n = 1 the equality holds. Next we say that n = x is true so that:\newline
+
+$R_{1...x}$ = $\frac{1}{\sum^{x}_{i=1} \frac{1}{R_i}}$\newline
+
+Next we can see that this holds for n = x + 1. Therefore the resistance of $R_{1...x+1}$ for x+1 resistances $R_1$, $R_2$,..., $R_{x+1}$ in parallel is equal to the resistance of two resistors $R_{1...x}$ and $R_{1+x}$ in parallel then:\newline
+
+$R_{1...(k+1)}$ = $\frac{1}{\frac{1}{R_{1...x}} + \frac{1}{R_{x+1}}}$ = $\frac{1}{\sum^{x}_{i=1} \frac{1}{R_i} + \frac{1}{R_{x+1}}}$ = $\frac{1}{\sum^{x+1}_{i=1} \frac{1}{R_i}}$\newline
+
+which proves the equality holds for n = x + 1. Finally the resistance of n resistors is parallel is given by:\newline
+
+$R_{n...1}$ = $\frac{1}{\sum^{n}_{i=1} \frac{1}{R_i}}$ = $\frac{1}{\frac{1}{R_1} + \frac{1}{R_2} + ... + \frac{1}{R_n}}$\newline
+
+\clearpage
+
+\section{Exercise 1.5.}
+
+\paragraph{Question\newline}
+
+Show that it is not possible to exceed the power rating of a 1/4 watt resistor of resistance greater than 1k, no matter how you connect it, in a circuit operating from a 15 volt battery.
+
+\paragraph{Solution\newline}
+
+Using P = IV = $\frac{V^2}{R}$\newline
+
+Since the minimum resistance possible is $1k\Omega$ the maximum power output by the resistor is equal to:\newline
+
+$\frac{15^2}{1k\Omega}$ = $\frac{225}{1000}$ = 0.225 W\newline
+
+This is smaller than the 0.25 W the resistor is rated for and given the inverse nature of the relationship between power output and resistance given a constant voltage, it can be deduced that it is not possible to exceed the power rating.\newline
+
+Or\newline
+
+0.225 W \textless \space 0.25 W due to P = $\frac{V^2}{R}$
+
+\clearpage
+
+\section{Exercise 1.6.}
+
+\paragraph{Question\newline}
+
+New York City requires about $10^10$ watts of electrical power, at 115 volts (this is plausible: 10 million people averaging 1 kilowatt each). A heavy power cable might be an inch in diameter. Let's calculate what will happen if we try to supply the power through a cable 1 foot in diameter made of pure copper. Its resistance of $0.05\mu\Omega$ ($5\times10^{-8}$ ohms) per foot. Calculate (a) the power lost per foot from "$I^2R$ losses," (b) the length of cable of over which you will lose all $10^{10}$ watts, and (c) how hot the cable will get, if you know the physics involved ($\sigma$ = $6\times10^{-12} W/K^{4}cm^{2}$). If you have done your computations correctly, the result should seem preposterous. What is the solution to this puzzle?
+
+\paragraph{Solution\newline}
+
+a. The total current that will flow through the cable is able to be calculated using:\newline
+
+I = $\frac{P}{V}$\newline
+
+I = $\frac{P}{V}$ = $\frac{10^{10} W}{115 V}$ = 86956521.739 A = $8.696\times10^7$\newline
+
+$(8.696\times10^7)^2 * 5\times10^{-8}$ = $3.781\times10^8$ $\frac{W}{ft}$
+
+\paragraph{\newline}
+
+b. $\frac{10^{10} W}{3.781\times10^8 W/ft}$ = 26.45 ft
+
+\paragraph{\newline}
+
+c. Using T = $\sqrt[4]{\frac{P}{A\sigma}}$\newline
+
+Converting ft to cm: 26.45 ft = 806.196 cm\newline
+
+The surface area of the copper cabling will be:\newline
+
+Area of the side of a cylinder = 2$\pi$ * r * h = 2$\pi$ * 15.24 = 95.755744 * 806.196 = $77.197898\times10^3$\newline
+
+Area of the end of a cylinder = $\pi$ * $r^{2}$ = $\pi$ * 15.242 = 729.6587699\newline
+
+Total surface area = $77.197898\times10^3$ + (729.6587699 * 2) = 78657.2154 $cm^2$\newline
+
+T = $\sqrt[4]{\frac{10^{10}}{78657.2154*6\times10^{-12}}}$ = 12065.00609$^\circ$C\newline
+
+Of course 12065.01$^\circ$C is a crazy temperature, it's over the melting point of copper at 1085$^\circ$C. The solution to this problem is to use a material in the wire with a lower resistance, as well as to increase the surface area of the wire by using strategies such as multicore wire and thicker cables.\newline
+
+\clearpage
+
+\section{Exercise 1.7.}
+
+\paragraph{Question\newline}
+
+What will a $20,000\Omega/V$ meter read, on its 1V scale, when attached to a 1V source with an internal resistance of 10k? What will it read when attached to a 10k-10k voltage divider driven by a "stiff" (zero source resistance) 1V source?
+
+\paragraph{Solution\newline}
+
+As the source internal resistance and meter resistance are in series, they are added together to get $30000\Omega$\newline
+
+Using I = $\frac{V}{R}$\newline
+
+I = $\frac{1 V}{30000\Omega}$ = 0.000033 A will flow when the meter is attached to the battery.\newline
+
+Using this current flow we can determine the defection.\newline
+
+$\frac{1 V}{30000\Omega}$ * 20000 = 0.666 V\newline
+
+\paragraph{\newline}
+
+This solution uses Th\'{e}venin's theorem.\newline
+
+Th\'{e}venin's voltage = $V_{in}$ * $\frac{R_2}{(R_1+R_2)}$\newline
+
+Th\'{e}venin's voltage = 1 * $\frac{10000}{(10000+10000)}$ = 0.5 V\newline
+
+Th\'{e}venin's resistance = $\frac{R1*R2}{R1+R2}$\newline
+
+Th\'{e}venin's resistance = $\frac{10000*10000}{10000+10000}$ = $5000\Omega$\newline
+
+Therefore when using these values in a Th\'{e}venin equivalent circuit:\newline
+
+As the Th\'{e}venin's circuit places the Th\'{e}venin's resistance and load resistance in series the total resistance is $25000\Omega$.\newline
+
+Using I = $\frac{V}{R}$\newline
+
+
+I = $\frac{0.5}{25000}$ = 0.00002 A\newline
+
+0.00002 A * $20000\Omega$ = 0.4 V\newline
+
+\clearpage
+
+\section{Exercise 1.8.}
+
+\paragraph{Question\newline}
+
+A $50\mu$ A meter movement has an internal resistance of 5k. What shunt resistance is needed to convert it to a 0-1 A meter? What resistance will convert it to a 0-10 V meter?
+
+\paragraph{Solution\newline}
+
+Using V = IR\newline
+
+V = 0.00005 * 5000 = 0.25 V\newline
+
+Divide the voltage that will be present across the device by the required max current for the shunt resistance:\newline
+
+R = $\frac{V}{I}$\newline
+
+$\frac{0.25}{1}$ = $0.25\Omega$ shunt resistance\newline
+
+\paragraph{\newline}
+
+To be able to measure 10V, simply use V/I = R to calculate the total resistance required for full deflection, then adjust the resistor value based on the internal resistance.\newline
+
+$\frac{10 V}{0.00005 A}$ = $200000\Omega$\newline
+
+$200000\Omega$ - $5000\Omega$ = $195000\Omega$\newline
+
+\clearpage
+
+\section{Exercise 1.9.}
+
+\paragraph{Question\newline}
+
+The very high internal resistance of digital multimeters, in their voltage measuring ranges can be used to measure extremely low currents (even though the DMM may not offer a low current range explicitly). Suppose, for example, you want to measure the small current that flows through a $1000M\Omega$ "leakage" resistance (that term is used to describe a small current that ideally should be absent entirely, for example through the insulation of an underground cable). You have available a standard DMM, whose 2V DC range has a $10M\Omega$ internal resistance, and you have available a DC source of +10V. How can you use what you've got to measure accurately the leakage resistance?\newline
+
+\paragraph{Solution\newline}
+
+Connect the two in series.\newline
+
+Using V = IR\newline
+
+This assumes that the +10VDC source is precise\newline
+
+If the internal DMM resistance in the 2V range is 10M, the voltage you read when the two are in series is:\newline
+
+V = 10M * $I_{leakage}$\newline
+
+So you can work out what $I_{leakage}$ is.\newline
+
+Therefore, you can again use V = IR to work out that:\newline
+
+$R_{leakage}$ = $\frac{10V - V_{dmm}}{I_{leakage}}$.
+
+\clearpage
+
+\section{Exercise 1.10.}
+
+\paragraph{Question\newline}
+
+For the circuit shown in Figure 1.12, with V = 30V and $R_1$ = $R_2$ = $10k\Omega$, find (a) the output voltage with no load attached (the open circuit voltage); (b) the output voltage with a 10k load (treat as a voltage divider, with $R_2$ and $R_{load}$ combined into a single resistor); (c) the Th\'{e}venin's equivalent circuit; (d) the same as in part (b), but using the Th\'{e}venin equivalent circuit [again, you wind up with a voltage divider; the answer should agree with the result in part (b)]; (e) the power dissipated in each of the resistors.\newline
+
+The below diagram, Figure 3 is the diagram shown in figure 1.12 in The Art Of Electronics\newline
+
+\begin{figure}[h]\centering
+\begin{circuitikz}
+      \draw (0,0)
+      to[short] (2,0)
+      to[R=$R_1$] (2,-2)
+      to[R=$R_2$] (2,-4)
+      node[ground] (2,-6){};
+      \draw (2,-2)
+      to[short] (4, -2)
+      to[R=$R_{Load}$] (4,-4)
+      node[ground] (4,-6){};
+\end{circuitikz}
+\caption{A diagram of a potential divider with $R_1$ and $R_2$ and a load of $R_{Load}$}
+\end{figure}
+
+\paragraph{Solution\newline}
+
+a. Open circuit voltage:\newline
+
+$V_{out}$ = $V_{in}$ * $\frac{R_2}{R_1+R_2}$\newline
+
+30 V * $\frac{10k\Omega}{10k\Omega+10k\Omega}$ = 15 V\newline
+
+\clearpage
+
+\paragraph{\newline}
+
+b. Output Voltage with 10k load:\newline
+
+Combining load resistance with $R_2$\newline
+
+$(\frac{1}{10k\Omega} + \frac{1}{10k\Omega})^{-1}$ = $(\frac{2}{10})^{-1}$ = $5k\Omega$\newline
+
+Using $5k\Omega$ for $R_2$\newline
+
+30 V * $\frac{5k\Omega}{10k\Omega+5k\Omega}$ = 10 V\newline
+
+\paragraph{\newline}
+
+c. Using Figure 4 below as the basis for the Th\'{e}venin equivalent circuit
+
+\begin{figure}[h]\centering
+\begin{circuitikz}
+      \draw (0,0)
+      to[short] (2,0)
+      to[R=$R_{Th}$] (2,-2)
+      to[R=$R_{Load}$] (2,-3)
+      node[ground] (2,-5){};
+\end{circuitikz}
+\caption{A diagram of a Th\'{e}venin equivalent circuit with $R_{Th}$ representing the potential divider and a load of $R_{Load}$}
+\end{figure}
+
+$R_{Th}$ = $\frac{10k\Omega*10k\Omega}{10k\Omega+10k\Omega}$ = $5k\Omega$\newline
+
+$V_{Th}$ = $30 * \frac{10k\Omega}{10k\Omega+10k\Omega}$ = $15 V$\newline
+
+\begin{figure}[h]\centering
+\begin{circuitikz}
+      \draw (0,0)
+      to[battery2 = $V_{Th}\mathalpha{=}15V$] (0,4) % The DC power source
+      to[short] (2,4)
+      to[R=$R_{Th}\mathalpha{=}5k\Omega$] (2,2) % The resistor
+      to[short] (2,2)
+      to[R=$R_{Load}$] (2,0) % The resistor
+      to[short] (2,0)
+      to[short] (0,0);
+\end{circuitikz}
+\caption{A Th\'{e}venin equivalent diagram of for a potential divider}
+\end{figure}
+
+\paragraph{\newline}
+
+d. Output Voltage with 10k load:\newline
+
+Modelling based on Figure 5 using a potential divider, with $R_1$ = $R_{Th}$ and $R_2$ = $R_{Load}$\newline
+
+15 V * $\frac{10k\Omega}{5k\Omega+10k\Omega}$ = 10 V\newline
+
+\paragraph{\newline}
+
+e. Using P = $\frac{V^2}{R}$\newline
+
+$\frac{(10 V)^2}{10k\Omega}$ = 0.01 W dissipated by load\newline
+
+Using Kirchhoffs Voltage Law and P = $\frac{V^2}{R}$
+
+30 V source minus 10 V dropped across $R_2$
+
+30 V - 10 V = 20 V across $R_1$
+
+P = $\frac{(20 V)^2}{10k\Omega}$ = 0.04 W\newline
+
+
+\end{document}
